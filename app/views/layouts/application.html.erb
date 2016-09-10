@@ -7,8 +7,26 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+  <div class="col-md-12">
+    <header>
+      <div class = "nav-div">
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="col-xs-12 navbar-header" style="padding-left:-10px">
+            <div class="col-xs-3 pull-left">
+              <a href="/" class="navbar-brand"><img class = "img-responsive" src="http://i.imgur.com/TwxOi2O.png"></a>
+            </div>
+            <div class="col-xs-9 pull-right">
+              <ul class="nav navbar-nav v-align pull-right">
+                <li>Sign Up</li>
+                <li>Log In</li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <%= yield %>
+  </div>
 
 </body>
 </html>
