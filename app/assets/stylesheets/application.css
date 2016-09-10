@@ -20,14 +20,14 @@
  }
 
  .navbar-brand>img {
-    margin-top: -10px !important;
+    margin-top: -7px !important;
     padding: 0px;
     height: 40px;
     width: 190px;
  }
 
  .navbar-nav>li {
-   padding: 2.4vh;
+   padding: 0.5vh;
  }
 
  main {
