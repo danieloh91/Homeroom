@@ -7,3 +7,28 @@
  *= require_tree .
  *= require_self
  */
+
+
+
+ @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+
+ html, body{
+   height: 100%;
+   padding-top: 60px;
+   background: gray;
+ }
+
+ .navbar-brand>img {
+    margin-top: -10px !important;
+    padding: 0px;
+    height: 40px;
+    width: 190px;
+ }
+
+ .navbar-nav>li {
+   padding: 2.4vh;
+ }
+
+ main {
+   margin-top: -5.5%;
+ }
