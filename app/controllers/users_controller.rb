@@ -22,8 +22,29 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    find_user
     render :show
+  end
+
+  def edit
+    find_user
+  end
+
+  def update
+    find_user
+    if @user.update(user_params)
+      flash[:success] = "Your profile was successfully updated"
+      redirect_to @user
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    find_user
+    @user.destroy
+    flash[:success] = "Your account has been deactivated."
+    redirect_to root_path
   end
 
   private
@@ -34,5 +55,9 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.new(user_params)
+  end
+
+  def find_user
+    @user = User.find(params[:id])
   end
 end
