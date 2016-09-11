@@ -31,6 +31,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'bootstrap_form'
 
+gem 'has_friendship'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
