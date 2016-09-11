@@ -12,13 +12,21 @@
         <%= f.radio_button :role, 'true'  %>
         <%= f.label 'Instructor', inline: true  %>
       <% end %>
-      <p>Course</p>
-      <div class="btn-group" role="group">
+      <input type="radio" name='thing' value='valuable' data-id="female" />Female
+      <input type="radio" name='thing' value='valuable' data-id="male" />Male
+      <hr />
+      <div id="female" class="none">Div for Male</div>
+      <div id="male" class="none">Div for Female</div>
+
+      <div class="btn-group none" role="group" id="instructor">
+        <p>Course</p>
         <button type="button" class="btn btn-secondary">WDI</button>
         <button type="button" class="btn btn-secondary">UXDI</button>
         <button type="button" class="btn btn-secondary">DSI</button>
       </div>
       <%= f.text_field :course, placeholder: 'Course' %>
+
+
     <br>
     <div class="FormButtons">
       <%= f.submit @user.new_record? ? "Create Account" : "Update Profile"  %>

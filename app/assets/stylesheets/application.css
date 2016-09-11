@@ -47,3 +47,7 @@
 .CreateButton {
   text-align: center;
 }
+
+.flash-message-container {
+  padding-top: 30px;
+}
