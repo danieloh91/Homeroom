@@ -12,7 +12,7 @@
   text-align: center;
 }
 
-legend {
+legend, h2 {
   text-align: center;
 }
 
@@ -23,4 +23,21 @@ legend {
 .demo {
   height: 250px;
   width: 350px;
+}
+
+.ruby-link {
+  color: white;
+  text-decoration: none !important;
+}
+
+.ruby-link:hover {
+  color: white;
+}
+
+.instructor {
+  display: none;
+}
+
+.FormButtons {
+  text-align: center;
 }
