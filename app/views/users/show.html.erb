@@ -1,15 +1,32 @@
 <div class="flash-message-container">
   <%= flash_messages %>
 </div>
-<h1>TEST</h1>
-<div class="container">
-  <ul>
-    <li><%= @user.first_name %></li>
-    <li><%= @user.last_name %></li>
-    <li><%= @user.email %></li>
-    <li><%= @user.password_digest %></li>
-    <li><%= @user.image %></li>
-    <li><%= @user.role %></li>
-    <li><%= @user.course %></li>
-  </ul>
+
+<div class="col-md-4" style='background:blue'>
+  <%= image_tag("#{@user.image}", width: "200px", alt: "Profile Picture") %>
+  <h3><%= @user.first_name.titleize %> <%= @user.last_name.titleize %></h3>
+  <p> <%= @user.email %> </p>
+</div>
+
+<div class="col-md-7" style='background:red'>
+  <% if current_user != nil && current_user.id == @user.id && current_user.role == true %>
+    <%= bootstrap_form_for(@user) do |f| %>
+      <%= f.text_area :email, placeholder: 'test' %>
+    <% end %>
+  <% elsif current_user != nil && current_user.id == @user.id && current_user.role == false %>
+    <ul>
+      <li>I am a student</li>
+      <li>Placeholder for instructor tweets</li>
+    </ul>
+  <% else %>
+    <ul>
+      <li>Sign up</li>
+    </ul>
+  <% end %>
+</div>
+
+<div class="col-md-1" style='background:green'>
+  <div class="container">
+    <h1>test</h1>
+  </div>
 </div>

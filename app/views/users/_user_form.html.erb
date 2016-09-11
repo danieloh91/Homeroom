@@ -6,15 +6,17 @@
       <%= f.email_field :email, placeholder: 'Email' %>
       <%= f.password_field :password, placeholder: 'Password' %>
       <%= f.text_field :image, placeholder: 'Image URL' %>
-      <%= f.form_group :role, label: { text: "Role" } do %>
-        <%= f.radio_button :role, false, label: "Student" %>
-        <%= f.radio_button :role, true, label: "Instructor" %>
+      <%= f.form_group :role, label: { text: "Signing up as:" } do %>
+        <div class="HideCourses">
+          <%= f.radio_button :role, false, label: "Student" %>
+        </div>
+        <div class="ShowCourses">
+          <%= f.radio_button :role, true, label: "Instructor" %>
+        </div>
       <% end %>
-      <%= f.form_group :course, label: { text: "Course" } do %>
-        <%= f.radio_button :course, 'WDI', label: "WDI" %>
-        <%= f.radio_button :course, 'UXDI', label: "UXDI" %>
-        <%= f.radio_button :course, 'DSI', label: "DSI" %>
-      <% end %>
+      <div class="instructor">
+        <%= f.select :course, [[nil, nil], ['WDI', "WDI"], ['UXDI', "UXDI"], ['DSI', "DSI"]], { label: "Instructor of:" }, { class: "selectpicker" } %>
+      </div>
     <br>
     <div class="FormButtons">
       <%= f.submit @user.new_record? ? "Create Account" : "Update Profile"  %>

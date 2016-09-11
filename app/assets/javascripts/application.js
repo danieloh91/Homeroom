@@ -14,3 +14,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).on('click', '.ShowCourses', function(){
+  $('.instructor').show();
+});
+
+$(document).on('click', '.HideCourses', function(){
+  $('.instructor').hide();
+});
