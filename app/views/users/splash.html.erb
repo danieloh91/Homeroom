@@ -8,7 +8,7 @@
   </div>
 </div>
 
-<div class="row">  
+<div class="row">
   <div class="well col-sm-10 col-sm-offset-1">
     <legend>What you'll find...</legend>
     <div class="col-sm-4 about">
@@ -37,6 +37,6 @@
 
 <div class="row splashBtn">
   <div>
-    <button type="button" name="button">Sign Up Here</button>
+    <%= button_to "Sign Up Here", new_user_path, method: :get, :class=>"ruby-link btn btn-info btn-default btn-md" %>
   </div>
 </div>
