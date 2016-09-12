@@ -5,6 +5,11 @@ class UsersController < ApplicationController
     render :splash
   end
 
+  def index
+    @user = User.all
+    render :instructors
+  end
+
   def new
     @user = User.new
     render :new

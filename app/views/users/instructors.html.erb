@@ -1,0 +1,28 @@
+<h1>Instructors</h1>
+
+<div class="col-md-4">
+  <h3>WDI</h3>
+  <% @user.each do |f| %>
+    <% if f.course == "WDI" && f.role==true %>
+      <li><%= f.first_name.titleize %> <%= f.last_name.titleize %></li>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="col-md-4">
+  <h3>UXDI</h3>
+  <% @user.each do |f| %>
+    <% if f.course == "UXDI" && f.role==true %>
+      <li><%= f.first_name.titleize %> <%= f.last_name.titleize %></li>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="col-md-4">
+  <h3>DSI</h3>
+  <% @user.each do |f| %>
+    <% if f.course == "DSI" && f.role==true %>
+      <li><%= f.first_name.titleize %> <%= f.last_name.titleize %></li>
+    <% end %>
+  <% end %>
+</div>
