@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include AuthHelper
 
   def splash
     render :splash
@@ -28,23 +29,32 @@ class UsersController < ApplicationController
 
   def edit
     find_user
+    auth_fail("edit other people's user information!", @user) if !auth_route(@user)
   end
 
   def update
     find_user
-    if @user.update(user_params)
-      flash[:success] = "Your profile was successfully updated"
-      redirect_to @user
+    if auth_route(@user)
+      if @user.update(user_params)
+        flash[:success] = "Your profile was successfully updated"
+        redirect_to @user
+      else
+        render :edit
+      end
     else
-      render :edit
+      auth_fail("update other people's user information!", @user)
     end
   end
 
   def destroy
     find_user
-    @user.destroy
-    flash[:success] = "Your account has been deactivated."
-    redirect_to root_path
+    if auth_route(@user)
+      @user.destroy
+      flash[:success] = "Your account has been deactivated."
+      redirect_to root_path
+    else
+      auth_fail("Your account could not be deactivated.", user_path(@user))
+    end
   end
 
   private
