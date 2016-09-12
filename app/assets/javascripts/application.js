@@ -22,3 +22,8 @@ $(document).on('click', '.ShowCourses', function(){
 $(document).on('click', '.HideCourses', function(){
   $('.instructor').hide();
 });
+
+$(document).on('click', '.followBtn', function(){
+  $('.followBtn').removeClass('visible').addClass('invisible');
+  $('.pendingBtn').removeClass('invisible').addClass('visible');
+});

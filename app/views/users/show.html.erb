@@ -10,9 +10,12 @@
   <% elsif current_user != nil && current_user.id == @user.id && current_user.role == false %>
     <%= @user.email %>
   <% elsif current_user != nil && current_user.id != @user.id && current_user.role == false && @user.role == true %>
-    <button type="button" name="button"></button>
-    <%= button_to "Follow", add_instructor_path, :class=>"ruby-link btn btn-info btn-default btn-md followBtn" %>
-    <%= button_to "Pending Request", disabled: true, :class=>"ruby-link btn btn-info btn-default btn-md pendingBtn" %>
+    <% if current_user.friends_with?(@user) == false %>
+      <%= button_to "Follow", add_instructor_path, {class: "ruby-link btn btn-info btn-default btn-md followBtn visible"} %>
+      <%= button_to "Pending Request", {disabled: true}, {class: "ruby-link btn btn-info btn-default btn-md pendingBtn invisible"} %>
+    <% elsif current_user.friends_with?(@user) == true %>
+      <button type="button" name="button">Following</button>
+    <% end %>
   <% else %>
     <li>hi</li>
   <% end %>
