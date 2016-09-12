@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include AuthHelper
 
   def splash
     render :splash
@@ -28,23 +29,55 @@ class UsersController < ApplicationController
 
   def edit
     find_user
+    auth_fail("edit other people's user information!", @user) if !auth_route(@user)
   end
 
   def update
     find_user
-    if @user.update(user_params)
-      flash[:success] = "Your profile was successfully updated"
-      redirect_to @user
+    if auth_route(@user)
+      if @user.update(user_params)
+        flash[:success] = "Your profile was successfully updated"
+        redirect_to @user
+      else
+        render :edit
+      end
     else
-      render :edit
+      auth_fail("update other people's user information!", @user)
     end
   end
 
   def destroy
     find_user
-    @user.destroy
-    flash[:success] = "Your account has been deactivated."
-    redirect_to root_path
+    if auth_route(@user)
+      @user.destroy
+      flash[:success] = "Your account has been deactivated."
+      redirect_to root_path
+    else
+      auth_fail("Your account could not be deactivated.", user_path(@user))
+    end
+  end
+
+  def follow
+    find_user
+    render :follow
+  end
+
+  def add_instructor
+    current_user.friend_request(find_user)
+    if current_user.save
+      redirect_to user_path, notice: "Request was sent to instructor"
+    else
+      redirect_to user_path, flash[:error] = "There was an error to adding this instructor"
+    end
+  end
+
+  def confirm_instructor
+    current_user.accept_request(current_user.requested_friends[0])
+    if current_user.save
+      redirect_to user_path, notice: "You have added this student to your class"
+    else
+      redirect_to user_path, flash[:error] = "There was an error to adding this student"
+    end
   end
 
   private
