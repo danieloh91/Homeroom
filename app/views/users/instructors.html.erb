@@ -13,7 +13,7 @@
         <h3>WDI</h3>
         <% @user.each do |f| %>
           <% if f.course == "WDI" && f.role==true %>
-            <%= f.first_name.titleize %> <%= f.last_name.titleize %><br>
+            <%= link_to "test", user_path(f.id) %><br>
           <% end %>
         <% end %>
       </div>
