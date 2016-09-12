@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   patch "/users/:id", to: "users#update"
   delete "/users/:id", to: "users#destroy", as: "destroy_user"
   get "/users/:id/follow", to: "users#follow", as: "follow_user"
+  post "/users/:id", to: "users#add_instructor", as: "add_instructor"
+  post "/users/:id/follow", to: "users#confirm_instructor", as: "confirm_instructor"
 
   get "/login", to: "sessions#new", as: "new_session"
   get "/logout", to: "sessions#destroy"
