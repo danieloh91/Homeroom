@@ -37,6 +37,12 @@
 
 <div class="row splashBtn">
   <div>
-    <%= button_to "Sign Up Here", new_user_path, method: :get, :class=>"ruby-link btn btn-info btn-default btn-md" %>
+    <% if current_user != nil && current_user.role == true %>
+      <%= button_to "Create Tweet (need to do)", method: :get, :class=>"ruby-link btn btn-info btn-default btn-md" %>
+    <% elsif current_user != nil && current_user.role == false %>
+      <%= button_to "Find Instructors", method: :get, :class=>"ruby-link btn btn-info btn-default btn-md" %>
+    <% else %>
+      <%= button_to "Sign Up Here", new_user_path, method: :get, :class=>"ruby-link btn btn-info btn-default btn-md" %>
+    <% end %>
   </div>
 </div>

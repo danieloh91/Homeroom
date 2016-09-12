@@ -9,8 +9,8 @@
     <li>I am an instructor</li>
   <% elsif current_user != nil && current_user.id == @user.id && current_user.role == false %>
     <%= @user.email %>
-  <% elsif current_user != nil && current_user.id != @user.id && current_user.role == false %>
-    <%= link_to "Follow" %>
+  <% elsif current_user != nil && current_user.id != @user.id && current_user.role == false && @user.role == true %>
+    <%= button_to "Follow", current_user.friend_request(@user) %>
   <% else %>
     <li>hi</li>
   <% end %>
