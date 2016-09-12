@@ -1,6 +1,6 @@
 <h1>test</h1>
 <ul>
-  <%= current_user.requested_friends.each do |f| %>
-    <li><%= f.first_name %> </li>
+  <% current_user.requested_friends.each do |f| %>
+    <li><%= f.first_name %></li>
   <% end %>
 </ul>

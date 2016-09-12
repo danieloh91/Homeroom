@@ -19,23 +19,22 @@
 
 <div class="col-md-7" style='background:red'>
   <% if current_user != nil && current_user.id == @user.id && current_user.role == true %>
+    <h4>Form to tweet</h4>
     <%= bootstrap_form_for(@user) do |f| %>
       <%= f.text_area :email, placeholder: 'test' %>
     <% end %>
-    <%= @user.friends.each do |f| %>
-      <%= f.first_name %>
+    <h4>Students</h4>
+    <% @user.friends.each do |f| %>
+      <%= f.first_name.titleize %> <%= f.last_name.titleize %>
     <% end %>
   <% elsif current_user != nil && current_user.id == @user.id && current_user.role == false %>
     <ul>
       <li>I am a student</li>
       <li>Placeholder for instructor tweets</li>
-      <%= @user.friends.each do |f| %>
-        <%= f.first_name %>
+      <h4>Instructors</h4>
+      <% @user.friends.each do |f| %>
+        <%= f.first_name.titleize %> <%= f.last_name.titleize %>
       <% end %>
-      <!-- <%= for i in 0..@user.friends.length do %>
-        <%= @user.friends[i] %>
-      <% end %> -->
-      <li><%= @user.friends.first.first_name %> </li>
     </ul>
   <% else %>
     <ul>
