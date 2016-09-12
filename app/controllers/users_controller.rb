@@ -5,6 +5,11 @@ class UsersController < ApplicationController
     render :splash
   end
 
+  def follow
+    find_user
+    render :follow
+  end
+
   def new
     @user = User.new
     render :new

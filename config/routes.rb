@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "/users/:id/edit", to: "users#edit", as: "edit_user"
   patch "/users/:id", to: "users#update"
   delete "/users/:id", to: "users#destroy", as: "destroy_user"
+  get "/users/:id/follow", to: "users#follow", as: "follow_user"
 
   get "/login", to: "sessions#new", as: "new_session"
   get "/logout", to: "sessions#destroy"

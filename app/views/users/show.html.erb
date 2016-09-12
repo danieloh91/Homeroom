@@ -2,7 +2,7 @@
   <%= flash_messages %>
 </div>
 
-<div class="col-md-4" style='background:blue'>
+<div class="col-md-4" style='background:lightblue'>
   <%= image_tag("#{@user.image}", width: "200px", alt: "Profile Picture") %>
   <h3><%= @user.first_name.titleize %> <%= @user.last_name.titleize %></h3>
   <% if current_user != nil && current_user.id == @user.id && current_user.role == true %>
@@ -10,7 +10,8 @@
   <% elsif current_user != nil && current_user.id == @user.id && current_user.role == false %>
     <%= @user.email %>
   <% elsif current_user != nil && current_user.id != @user.id && current_user.role == false && @user.role == true %>
-    <%= button_to "Follow", current_user.friend_request(@user) %>
+    <%= button_to "Follow", current_user.friend_request(@user), :class=>"ruby-link btn btn-info btn-default btn-md" %>
+    <%= button_to "Pending Request", current_user.friend_request(@user), disabled: true, :class=>"ruby-link btn btn-info btn-default btn-md" %>
   <% else %>
     <li>hi</li>
   <% end %>
