@@ -2,6 +2,6 @@
 <ul>
   <% current_user.requested_friends.each do |f| %>
     <li><%= f.first_name %></li>
-    <%= button_to "Confirm", confirm_instructor_path, :class=>"ruby-link btn btn-info btn-default btn-md followBtn" %>
+    <%= button_to "Confirm", confirm_instructor_path, :class=>"ruby-link btn btn-info btn-default btn-md" %>
   <% end %>
 </ul>
