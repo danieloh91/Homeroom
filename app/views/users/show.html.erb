@@ -32,6 +32,23 @@
     <% @user.friends.each do |f| %>
       <%= f.first_name.titleize %> <%= f.last_name.titleize %>
     <% end %>
+    <div class="row">
+      <aside class="col-md-4">
+        <section class="user_info">
+          <h1>
+            <%= @user.name %>
+          </h1>
+        </section>
+      </aside>
+      <div class="col-md-8">
+        <% if @user.tweets.any? %>
+          <h3>Tweets (<%= @user.tweets.count %>)</h3>
+          <ol class="tweets">
+            <%= render @tweets %>
+          </ol>
+        <% end %>
+      </div>
+    </div>
   <% elsif current_user != nil && current_user.id == @user.id && current_user.role == false %>
     <ul>
       <li>I am a student</li>

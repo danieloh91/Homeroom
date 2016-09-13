@@ -29,6 +29,7 @@ class UsersController < ApplicationController
 
   def show
     find_user
+    @tweets = @user.tweets
     render :show
   end
 

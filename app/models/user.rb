@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  has_many :tweets
+  has_many :tweets, dependent: :destroy
 
   private
   def default_values
