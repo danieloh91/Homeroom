@@ -1,0 +1,47 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="row">
+  <div class="well col-sm-10 col-sm-offset-1">
+    <legend>Instructors</legend>
+    <div class="col-sm-4 about">
+      <div class="col-sm-12">
+        <h3>WDI</h3>
+        <% @user.each do |f| %>
+          <% if f.course == "WDI" && f.role==true %>
+            <%= image_tag("#{f.image}", width: "200px", alt: "Profile Picture", :class => "circle_image") %>
+            <br>
+            <%= link_to f.first_name.titleize + " " + f.last_name.titleize, user_path(f.id) %>
+            <br>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm-4 about">
+      <div class="col-sm-12">
+        <h3>UXDI</h3>
+        <% @user.each do |f| %>
+          <% if f.course == "UXDI" && f.role==true %>
+            <%= image_tag("#{f.image}", width: "200px", alt: "Profile Picture", :class => "circle_image") %><br>
+            <%= link_to f.first_name.titleize + " " + f.last_name.titleize, user_path(f.id) %><br>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm-4 about">
+      <div class="col-sm-12">
+        <h3>DSI</h3>
+        <% @user.each do |f| %>
+          <% if f.course == "DSI" && f.role==true %>
+            <%= image_tag("#{f.image}", width: "200px", alt: "Profile Picture", :class => "circle_image") %><br>
+            <%= link_to f.first_name.titleize + " " + f.last_name.titleize, user_path(f.id) %><br>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
