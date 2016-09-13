@@ -25,18 +25,15 @@
 <div class="col-md-7" style='background:red'>
   <% if current_user != nil && current_user.id == @user.id && current_user.role == true %>
     <h4>Form to tweet</h4>
-    <%= bootstrap_form_for(@user) do |f| %>
-      <%= f.text_area :email, placeholder: 'test' %>
-    <% end %>
     <h4>Students</h4>
     <% @user.friends.each do |f| %>
-      <%= f.first_name.titleize %> <%= f.last_name.titleize %>
+      <li><%= f.first_name.titleize %> <%= f.last_name.titleize %></li>
     <% end %>
     <div class="row">
       <aside class="col-md-4">
         <section class="user_info">
           <h1>
-            <%= @user.name %>
+            <%= @user.first_name.titleize %>
           </h1>
         </section>
       </aside>
