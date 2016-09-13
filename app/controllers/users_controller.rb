@@ -79,7 +79,7 @@ class UsersController < ApplicationController
   def confirm_instructor
     current_user.accept_request(current_user.requested_friends[0])
     if current_user.save
-      redirect_to user_path, notice: "You have added this student to your class"
+      redirect_to confirm_instructor_path, notice: "You have added this student to your class"
     else
       redirect_to user_path, flash[:error] = "There was an error to adding this student"
     end
