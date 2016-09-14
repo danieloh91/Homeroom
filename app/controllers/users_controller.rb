@@ -93,6 +93,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def remove_student
+    find_user
+    if current_user.remove_friend(@user)
+      redirect_to current_user, notice: "Student was removed"
+    else
+      redirect_to user_path, flash[:error] = "There was an error removing this student"
+    end
+  end
+
   private
 
   def user_params

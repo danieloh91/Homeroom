@@ -2,17 +2,29 @@
   <%= flash_messages %>
 </div>
 
-<div class="col-md-4" style='background:lightblue'>
+<div class="col-md-4">
   <%= image_tag("#{@user.image}", width: "200px", alt: "Profile Picture") %>
   <h3><%= @user.first_name.titleize %> <%= @user.last_name.titleize %></h3>
+
   <% if current_user != nil && current_user.id == @user.id && current_user.role == true %>
-    <li>I am an instructor</li>
-    <h4>Students</h4>
-    <% @user.friends.each do |f| %>
-      <li><%= f.first_name.titleize %> <%= f.last_name.titleize %></li>
-    <% end %>
+    <div class="row">
+      <div class="well col-sm-10 col-sm-offset-1">
+        <legend>Students</legend>
+        <div class="col-sm-12">
+          <% @user.friends.each do |f| %>
+            <%= link_to image_tag(f.image, width: "50px"), user_path(f) %><br>
+            <%= link_to f.first_name.titleize + " " + f.last_name.titleize, user_path(f) %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
   <% elsif current_user != nil && current_user.id == @user.id && current_user.role == false %>
     <%= @user.email %>
+
+  <% elsif current_user != nil && current_user.id != @user.id && current_user.role == true %>
+    <%= button_to "Remove", remove_student_path, class: "ruby-link btn btn-info btn-default btn-md" %>
+
   <% elsif current_user != nil && current_user.id != @user.id && current_user.role == false && @user.role == true %>
     <% if current_user.friends_with?(@user) == true %>
       <button type="button" name="button" class="followBtn" disabled="disabled">Following</button>
@@ -21,8 +33,10 @@
     <% elsif @user.requested_friends[0] != current_user %>
       <%= button_to "Follow", add_instructor_path, {class: "ruby-link btn btn-info btn-default btn-md"} %>
     <% end %>
+
   <% else %>
     <li>hi</li>
+
   <% end %>
 </div>
 
