@@ -4,7 +4,7 @@
 
 <div class="row">
   <div class="well col-sm-6 col-sm-offset-3">
-    <legend>Requests to follow from:</legend>
+    <legend>Follow Requests (<%= @user.requested_friends.count %>)</legend>
     <div class="col-sm-4 about">
       <div class="col-sm-12">
         <% current_user.requested_friends.each do |f| %>
