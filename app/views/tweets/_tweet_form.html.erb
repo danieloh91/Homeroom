@@ -2,5 +2,5 @@
   <div class="field">
     <%= f.text_area :content, placeholder: "Compose new tweet..." %>
   </div>
-  <%= f.submit "Post", class: "btn btn-primary" %>
+  <%= button_to "Post", tweets_path, {class: "btn btn-primary"} %>
 <% end %>

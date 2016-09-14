@@ -5,7 +5,7 @@ class TweetsController < ApplicationController
     @tweet = current_user.tweets.build(tweet_params)
     if @tweet.save
       flash[:success] = "tweet created!"
-      redirect_to user_path
+      redirect_to current_user
     else
       flash[:error] = "unable to create tweet"
     end
