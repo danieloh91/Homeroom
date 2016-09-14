@@ -30,6 +30,13 @@ class UsersController < ApplicationController
   def show
     find_user
     @tweets = @user.tweets
+    @instructor_tweets = []
+    current_user.friends.each do |f|
+      f.tweets.reverse_each do |g|
+        @instructor_tweets.push(g)
+      end
+    end
+
   end
 
   def edit

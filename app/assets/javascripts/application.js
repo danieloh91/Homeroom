@@ -21,4 +21,5 @@ $(document).on('click', '.ShowCourses', function(){
 
 $(document).on('click', '.HideCourses', function(){
   $('.instructor').hide();
+  $('.selectpicker').val('');
 });

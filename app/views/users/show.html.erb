@@ -109,19 +109,21 @@
     <div class="row">
       <div class="col-md-8">
         <h3>Feed</h3>
-        <% current_user.friends.each do |f| %>
           <ol class="tweets">
-            <% f.tweets.each do |g| %>
-              <span class="user"><%= link_to g.user.first_name.titleize, g.user %></span>
-              <span class="content"><%= g.content %></span>
-              <span class="timestamp">
-                Posted <%= g.created_at %> ago.
-              </span>
+            <% @instructor_tweets.each do |g| %>
+              <li id="tweet-<%= g.id %>">
+                <%= image_tag("#{g.user.image}", width: "80px", height: "80px", alt: "Profile Picture") %>
+                <span class="user"><%= link_to g.user.first_name.titleize, g.user %></span>
+                <span class="content"><%= g.content %></span>
+                <span class="timestamp">
+                  Posted <%= time_ago_in_words(g.created_at) %> ago.
+                </span>
+              </li>
             <% end %>
           </ol>
-        <% end %>
       </div>
     </div>
+  <!-- instructor viewing student page -->
 
   <% else %>
     <h3>Please sign up to view</h3>

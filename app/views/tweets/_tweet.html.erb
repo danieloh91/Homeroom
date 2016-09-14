@@ -2,6 +2,6 @@
   <span class="user"><%= link_to tweet.user.first_name.titleize, tweet.user %></span>
   <span class="content"><%= tweet.content %></span>
   <span class="timestamp">
-    Posted <%= tweet.created_at %> ago.
+    Posted <%= time_ago_in_words(tweet.created_at) %> ago.
   </span>
 </li>
