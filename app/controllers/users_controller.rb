@@ -85,6 +85,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def deny_instructor
+    if current_user.decline_request(current_user.requested_friends[0])
+      redirect_to confirm_instructor_path, notice: "Student was not added"
+    else
+      redirect_to user_path, flash[:error] = "There was an error removing this student"
+    end
+  end
+
   private
 
   def user_params
