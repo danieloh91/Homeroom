@@ -2,17 +2,56 @@
   <%= flash_messages %>
 </div>
 
-<div class="col-md-4" style='background:lightblue'>
-  <%= image_tag("#{@user.image}", width: "200px", alt: "Profile Picture") %>
+<div class="col-md-4 user-info-column">
+  <%= image_tag("#{@user.image}", width: "200px", height: "200px", alt: "Profile Picture") %>
   <h3><%= @user.first_name.titleize %> <%= @user.last_name.titleize %></h3>
+  <!-- instructor's page -->
   <% if current_user != nil && current_user.id == @user.id && current_user.role == true %>
-    <li>I am an instructor</li>
-    <h4>Students</h4>
-    <% @user.friends.each do |f| %>
-      <li><%= f.first_name.titleize %> <%= f.last_name.titleize %></li>
-    <% end %>
+    <div class="row">
+      <div class="well col-sm-10 col-sm-offset-1">
+        <legend>Students</legend>
+        <div class="col-sm-12">
+          <% @user.friends.each do |f| %>
+            <%= link_to image_tag(f.image, width: "50px"), user_path(f) %><br>
+            <%= link_to f.first_name.titleize + " " + f.last_name.titleize, user_path(f) %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  <!-- student's page -->
   <% elsif current_user != nil && current_user.id == @user.id && current_user.role == false %>
     <%= @user.email %>
+    <div class="row">
+      <div class="well col-sm-10 col-sm-offset-1">
+        <legend>Instructors</legend>
+        <div class="col-sm-12">
+          <% @user.friends.each do |f| %>
+            <%= link_to image_tag(f.image, width: "50px"), user_path(f) %><br>
+            <%= link_to f.first_name.titleize + " " + f.last_name.titleize, user_path(f) %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  <!-- instructor looking at student page -->
+  <% elsif current_user != nil && current_user.id != @user.id && current_user.role == true && @user.role == false %>
+    <% if current_user.friends_with?(@user) %>
+      <%= button_to "Remove Student", remove_student_path, class: "ruby-link btn btn-info btn-danger btn-md" %>
+    <% end %>
+    <div class="row">
+      <div class="well col-sm-10 col-sm-offset-1">
+        <legend>Instructors</legend>
+        <div class="col-sm-12">
+          <% @user.friends.each do |f| %>
+            <%= link_to image_tag(f.image, width: "50px"), user_path(f) %><br>
+            <%= link_to f.first_name.titleize + " " + f.last_name.titleize, user_path(f) %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  <!-- student looking at instructor page -->
   <% elsif current_user != nil && current_user.id != @user.id && current_user.role == false && @user.role == true %>
     <% if current_user.friends_with?(@user) == true %>
       <button type="button" name="button" class="followBtn" disabled="disabled">Following</button>
@@ -21,12 +60,26 @@
     <% elsif @user.requested_friends[0] != current_user %>
       <%= button_to "Follow", add_instructor_path, {class: "ruby-link btn btn-info btn-default btn-md"} %>
     <% end %>
-  <% else %>
-    <li>hi</li>
+
+  <!-- instructor looking at instructor page -->
+  <% elsif current_user != nil && current_user.id != @user.id && current_user.role == true && @user.role == true %>
+    <h4>Instructor of: <%= @user.course %></h4>
+    <div class="row">
+      <div class="well col-sm-10 col-sm-offset-1">
+        <legend>Students</legend>
+        <div class="col-sm-12">
+          <% @user.friends.each do |f| %>
+            <%= link_to image_tag(f.image, width: "50px"), user_path(f) %><br>
+            <%= link_to f.first_name.titleize + " " + f.last_name.titleize, user_path(f) %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   <% end %>
 </div>
 
-<div class="col-md-7" style='background:white'>
+<div class="col-md-7 user-content-column" style='background:white'>
+  <!-- create post only if current user is instructor -->
   <% if current_user != nil && current_user.id == @user.id && current_user.role == true %>
     <h1>What do you want to say?</h1>
     <div class="row">
@@ -36,7 +89,10 @@
         </section>
       </aside>
     </div>
+  <% end %>
 
+  <!-- instructor -->
+  <% if current_user != nil && current_user.id == @user.id && current_user.role == true %>
     <div class="row">
       <div class="col-md-8">
         <h3>Announcements (<%= @user.tweets.count %>)</h3>
@@ -47,24 +103,77 @@
         <% end %>
       </div>
     </div>
+
+  <!-- student -->
   <% elsif current_user != nil && current_user.id == @user.id && current_user.role == false %>
-    <ul>
-      <li>I am a student</li>
-      <li>Placeholder for instructor tweets</li>
-      <h4>Instructors</h4>
-      <% @user.friends.each do |f| %>
-        <%= f.first_name.titleize %> <%= f.last_name.titleize %>
-      <% end %>
-    </ul>
+    <div class="row">
+      <div class="col-md-8">
+        <h3>Feed</h3>
+          <ol class="tweets">
+            <% @instructor_tweets.sort_by(&:id).reverse_each do |g| %>
+              <li id="tweet-<%= g.id %>">
+                <%= image_tag("#{g.user.image}", width: "80px", height: "80px", alt: "Profile Picture") %>
+                <span class="user"><%= link_to g.user.first_name.titleize, g.user %></span>
+                <span class="content"><%= g.content %></span>
+                <span class="timestamp">
+                  Posted <%= time_ago_in_words(g.created_at) %> ago.
+                </span>
+              </li>
+            <% end %>
+          </ol>
+      </div>
+    </div>
+
+  <!-- instructor viewing student page -->
+  <% elsif current_user != nil && current_user.id != @user.id && current_user.role == true && @user.role == false %>
+    <div class="row">
+      <div class="col-md-8">
+        <h3>Instructors are unable to see student feeds</h3>
+      </div>
+    </div>
+
+  <!-- student viewing instructor page -->
+  <% elsif current_user != nil && current_user.id != @user.id && current_user.role == false && @user.role == true %>
+    <% if current_user.friends_with?(@user) %>
+      <div class="row">
+        <div class="col-md-8">
+          <h3>Feed</h3>
+            <ol class="tweets">
+              <% @user.tweets.sort_by(&:id).reverse_each do |g| %>
+                <li id="tweet-<%= g.id %>">
+                  <%= image_tag("#{g.user.image}", width: "80px", height: "80px", alt: "Profile Picture") %>
+                  <span class="user"><%= link_to g.user.first_name.titleize, g.user %></span>
+                  <span class="content"><%= g.content %></span>
+                  <span class="timestamp">
+                    Posted <%= time_ago_in_words(g.created_at) %> ago.
+                  </span>
+                </li>
+              <% end %>
+            </ol>
+        </div>
+      </div>
+    <% else %>
+      <h3>Feed only available for students</h3>
+    <% end %>
+  <!-- student looking at student page -->
+  <% elsif current_user != nil && current_user.id != @user.id && current_user.role == false && @user.role == false %>
+    <div class="row">
+      <div class="col-md-8">
+        <h3>Unable to view feed</h3>
+      </div>
+    </div>
+
+  <!-- instructor looking at instructor page -->
+  <% elsif current_user != nil && current_user.id != @user.id && current_user.role == true && @user.role == true %>
+    <div class="row">
+      <div class="col-md-8">
+        <h3>Instructors are unable to see announcements of other instructors</h3>
+      </div>
+    </div>
   <% else %>
+    <h3>Please sign up to view</h3>
     <ul>
-      <li>Sign up</li>
+      <%= button_to "Sign Up Here", new_user_path, method: :get, :class=>"ruby-link btn btn-info btn-default btn-md" %>
     </ul>
   <% end %>
-</div>
-
-<div class="col-md-1" style='background:green'>
-  <div class="container">
-    <h1>test</h1>
-  </div>
 </div>

@@ -12,7 +12,10 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    render :new
+    if current_user != nil
+      flash[:notice] = "Already logged in"
+      redirect_to current_user
+    end
   end
 
   def create
@@ -30,6 +33,13 @@ class UsersController < ApplicationController
   def show
     find_user
     @tweets = @user.tweets
+    @instructor_tweets = []
+    current_user.friends.each do |f|
+      f.tweets.each do |g|
+        @instructor_tweets.push(g)
+      end
+    end
+
   end
 
   def edit
@@ -64,7 +74,10 @@ class UsersController < ApplicationController
 
   def follow
     find_user
-    render :follow
+    if current_user.role == false
+      flash[:notice] = "As a student, you do not have follow requests"
+      redirect_to current_user
+    end
   end
 
   def add_instructor
@@ -82,6 +95,23 @@ class UsersController < ApplicationController
       redirect_to confirm_instructor_path, notice: "You have added this student to your class"
     else
       redirect_to user_path, flash[:error] = "There was an error to adding this student"
+    end
+  end
+
+  def deny_instructor
+    if current_user.decline_request(current_user.requested_friends[0])
+      redirect_to confirm_instructor_path, notice: "Student was not added"
+    else
+      redirect_to user_path, flash[:error] = "There was an error removing this student"
+    end
+  end
+
+  def remove_student
+    find_user
+    if current_user.remove_friend(@user)
+      redirect_to current_user, notice: "Student was removed"
+    else
+      redirect_to user_path, flash[:error] = "There was an error removing this student"
     end
   end
 

@@ -1,7 +1,10 @@
 <li id="tweet-<%= tweet.id %>">
-  <span class="user"><%= link_to tweet.user.first_name, tweet.user %></span>
+  <span class="user"><%= link_to tweet.user.first_name.titleize, tweet.user %></span>
   <span class="content"><%= tweet.content %></span>
   <span class="timestamp">
-    Posted <%= tweet.created_at %> ago.
+    Posted <%= time_ago_in_words(tweet.created_at) %> ago.
+    <% if current_user.role == true %>
+      <%= link_to "delete", tweet_path(tweet), method: :delete %>
+    <% end %>
   </span>
 </li>

@@ -19,9 +19,7 @@
           <button class="ruby-link btn-danger btn-primary btn-sm inline">
             <%= link_to "Deactivate", destroy_user_path(@user), method: :delete, :class=>"ruby-link"%>
           </button>
-          <button class="btn-success btn-primary btn-sm inline" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            Cancel
-          </button>
+          <%= button_to "Cancel", :back, method: :get, :class=>"ruby-link btn btn-info btn-default btn-md inline" %>
         </div>
       </div>
     </div>

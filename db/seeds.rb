@@ -21,6 +21,42 @@ USERS = [
     course: "UXDI"
   },
   {
+    first_name: "Albert",
+    last_name: "Luo",
+    email: "albert@aol.com",
+    password: "test",
+    image: "https://ucarecdn.com/1386c488-f2db-4b63-959f-32656a7e35c6/",
+    role: true,
+    course: "DSI"
+  },
+  {
+    first_name: "Skyler",
+    last_name: "Roh",
+    email: "skyler@aol.com",
+    password: "test",
+    image: "https://ucarecdn.com/1386c488-f2db-4b63-959f-32656a7e35c6/",
+    role: true,
+    course: "DSI"
+  },
+  {
+    first_name: "Bryan",
+    last_name: "Mau",
+    email: "bryan@aol.com",
+    password: "test",
+    image: "https://ucarecdn.com/1386c488-f2db-4b63-959f-32656a7e35c6/",
+    role: true,
+    course: "WDI"
+  },
+  {
+    first_name: "Kevin",
+    last_name: "Stock",
+    email: "kevin@aol.com",
+    password: "test",
+    image: "https://ucarecdn.com/1386c488-f2db-4b63-959f-32656a7e35c6/",
+    role: false,
+    course: nil
+  },
+  {
     first_name: "Daniel",
     last_name: "Oh",
     email: "doh@aol.com",
@@ -47,11 +83,59 @@ TWEETS = [
   },
   {
     content: "Viral tofu iceland forage, raw denim man bun ennui farm-to-table lomo",
+    user_id: 2
+  },
+  {
+    content: "Listicle pickled, hammock tilde next level messenger bag banh mi.",
+    user_id: 3
+  },
+  {
+    content: "8-bit pork belly tousled book. Vape stumptown tbh.",
+    user_id: 4
+  },
+  {
+    content: "Viral tofu iceland forage, raw denim man bun ennui farm-to-table lomo",
+    user_id: 5
+  },
+  {
+    content: "Listicle pickled, hammock tilde next level messenger bag banh mi.",
+    user_id: 1
+  },
+  {
+    content: "8-bit pork belly tousled book. Vape stumptown tbh.",
+    user_id: 2
+  },
+  {
+    content: "Viral tofu iceland forage, raw denim man bun ennui farm-to-table lomo",
+    user_id: 3
+  },
+  {
+    content: "Listicle pickled, hammock tilde next level messenger bag banh mi.",
+    user_id: 4
+  },
+  {
+    content: "8-bit pork belly tousled book. Vape stumptown tbh.",
+    user_id: 5
+  },
+  {
+    content: "Viral tofu iceland forage, raw denim man bun ennui farm-to-table lomo",
     user_id: 1
   },
   {
     content: "Listicle pickled, hammock tilde next level messenger bag banh mi.",
     user_id: 2
+  },
+  {
+    content: "8-bit pork belly tousled book. Vape stumptown tbh.",
+    user_id: 3
+  },
+  {
+    content: "Viral tofu iceland forage, raw denim man bun ennui farm-to-table lomo",
+    user_id: 4
+  },
+  {
+    content: "Listicle pickled, hammock tilde next level messenger bag banh mi.",
+    user_id: 5
   },
 ]
 
