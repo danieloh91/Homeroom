@@ -79,6 +79,7 @@
 </div>
 
 <div class="col-md-7 user-content-column" style='background:white'>
+  <!-- create post only if current user is instructor -->
   <% if current_user != nil && current_user.id == @user.id && current_user.role == true %>
     <h1>What do you want to say?</h1>
     <div class="row">
@@ -88,7 +89,10 @@
         </section>
       </aside>
     </div>
+  <% end %>
 
+  <!-- instructor -->
+  <% if current_user != nil && current_user.id == @user.id && current_user.role == true %>
     <div class="row">
       <div class="col-md-8">
         <h3>Announcements (<%= @user.tweets.count %>)</h3>
@@ -99,15 +103,26 @@
         <% end %>
       </div>
     </div>
+
+  <!-- student -->
   <% elsif current_user != nil && current_user.id == @user.id && current_user.role == false %>
-    <ul>
-      <li>I am a student</li>
-      <li>Placeholder for instructor tweets</li>
-      <h4>Instructors</h4>
-      <% @user.friends.each do |f| %>
-        <%= f.first_name.titleize %> <%= f.last_name.titleize %>
-      <% end %>
-    </ul>
+    <div class="row">
+      <div class="col-md-8">
+        <h3>Feed</h3>
+        <% current_user.friends.each do |f| %>
+          <ol class="tweets">
+            <% f.tweets.each do |g| %>
+              <span class="user"><%= link_to g.user.first_name.titleize, g.user %></span>
+              <span class="content"><%= g.content %></span>
+              <span class="timestamp">
+                Posted <%= g.created_at %> ago.
+              </span>
+            <% end %>
+          </ol>
+        <% end %>
+      </div>
+    </div>
+
   <% else %>
     <h3>Please sign up to view</h3>
     <ul>
