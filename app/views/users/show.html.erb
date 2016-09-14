@@ -42,7 +42,7 @@
         <h3>Announcements (<%= @user.tweets.count %>)</h3>
         <% if @user.tweets.count > 0 %>
           <ol class="tweets">
-            <%= render @tweets %>
+            <%= render @tweets.order(:created_at).reverse_order %>
           </ol>
         <% end %>
       </div>
