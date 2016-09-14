@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
   def show
     find_user
-    render :show
+    @tweets = @user.tweets
   end
 
   def edit

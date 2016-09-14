@@ -42,13 +42,16 @@ USERS = [
 
 TWEETS = [
   {
-    content: "8-bit pork belly tousled book. Vape stumptown tbh."
+    content: "8-bit pork belly tousled book. Vape stumptown tbh.",
+    user_id: 1
   },
   {
-    content: "Viral tofu iceland forage, raw denim man bun ennui farm-to-table lomo"
+    content: "Viral tofu iceland forage, raw denim man bun ennui farm-to-table lomo",
+    user_id: 1
   },
   {
-    content: "Listicle pickled, hammock tilde next level messenger bag banh mi."
+    content: "Listicle pickled, hammock tilde next level messenger bag banh mi.",
+    user_id: 2
   },
 ]
 

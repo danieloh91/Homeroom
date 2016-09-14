@@ -1,0 +1,7 @@
+<li id="tweet-<%= tweet.id %>">
+  <span class="user"><%= link_to tweet.user.first_name, tweet.user %></span>
+  <span class="content"><%= tweet.content %></span>
+  <span class="timestamp">
+    Posted <%= tweet.created_at %> ago.
+  </span>
+</li>

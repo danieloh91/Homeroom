@@ -1,5 +1,5 @@
 module SessionsHelper
-  
+
   def login(user)
     session[:user_id] = user.id
     @current_user = user
@@ -9,21 +9,12 @@ module SessionsHelper
     @current_user ||= User.find_by_id(session[:user_id])
   end
 
-  def logged_in?
-    if current_user == nil
-      redirect_to login_url
-    end
-  end
-
-  def logged_in
-     unless logged_in?
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-     end
-  end
-
   def logout
     @current_user = session[:user_id] = nil
+  end
+
+  def store_location
+    session[:forwarding_url] = request.original_url if request.get?
   end
 
 end
