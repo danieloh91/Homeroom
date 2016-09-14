@@ -123,8 +123,53 @@
           </ol>
       </div>
     </div>
-  <!-- instructor viewing student page -->
 
+  <!-- instructor viewing student page -->
+  <% elsif current_user != nil && current_user.id != @user.id && current_user.role == true && @user.role == false %>
+    <div class="row">
+      <div class="col-md-8">
+        <h3>Instructors are unable to see student feeds</h3>
+      </div>
+    </div>
+
+  <!-- student viewing instructor page -->
+  <% elsif current_user != nil && current_user.id != @user.id && current_user.role == false && @user.role == true %>
+    <% if current_user.friends_with?(@user) %>
+      <div class="row">
+        <div class="col-md-8">
+          <h3>Feed</h3>
+            <ol class="tweets">
+              <% @user.tweets.sort_by(&:id).reverse_each do |g| %>
+                <li id="tweet-<%= g.id %>">
+                  <%= image_tag("#{g.user.image}", width: "80px", height: "80px", alt: "Profile Picture") %>
+                  <span class="user"><%= link_to g.user.first_name.titleize, g.user %></span>
+                  <span class="content"><%= g.content %></span>
+                  <span class="timestamp">
+                    Posted <%= time_ago_in_words(g.created_at) %> ago.
+                  </span>
+                </li>
+              <% end %>
+            </ol>
+        </div>
+      </div>
+    <% else %>
+      <h3>Feed only available for students</h3>
+    <% end %>
+  <!-- student looking at student page -->
+  <% elsif current_user != nil && current_user.id != @user.id && current_user.role == false && @user.role == false %>
+    <div class="row">
+      <div class="col-md-8">
+        <h3>Unable to view feed</h3>
+      </div>
+    </div>
+
+  <!-- instructor looking at instructor page -->
+  <% elsif current_user != nil && current_user.id != @user.id && current_user.role == true && @user.role == true %>
+    <div class="row">
+      <div class="col-md-8">
+        <h3>Instructors are unable to see announcements of other instructors</h3>
+      </div>
+    </div>
   <% else %>
     <h3>Please sign up to view</h3>
     <ul>

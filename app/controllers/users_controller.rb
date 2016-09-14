@@ -12,7 +12,10 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    render :new
+    if current_user != nil
+      flash[:notice] = "Already logged in"
+      redirect_to current_user
+    end
   end
 
   def create
@@ -71,7 +74,10 @@ class UsersController < ApplicationController
 
   def follow
     find_user
-    render :follow
+    if current_user.role == false
+      flash[:notice] = "As a student, you do not have follow requests"
+      redirect_to current_user
+    end
   end
 
   def add_instructor

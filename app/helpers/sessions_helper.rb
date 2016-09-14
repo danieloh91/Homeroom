@@ -13,6 +13,12 @@ module SessionsHelper
     @current_user = session[:user_id] = nil
   end
 
+  def logged_in?
+    if current_user == nil
+      redirect_to login_path
+    end
+  end
+
   def store_location
     session[:forwarding_url] = request.original_url if request.get?
   end
