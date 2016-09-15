@@ -50,16 +50,14 @@
  }
 
 
-/*
- footer {
-  left: 0;
-  bottom: 0;
-  height: 40px;
-  width: 100%;
+.flash-message-container {
+  margin: 0 25%;
+  width: 50%;
   text-align: center;
-  margin-top: 20px;
-  padding-top: 20px;
-}*/
+}
+.flash-message-container>.alert {
+  text-align: center;
+}
 
 .CreateButton {
   text-align: center;
