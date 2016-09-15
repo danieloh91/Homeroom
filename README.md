@@ -14,14 +14,13 @@ HomeRoom is a web platform through which instructors can communicate to their st
 
 ## Installation Steps
 * After cloning the repo, add the following gems to Gemfile
-  * ```gem 'bcrypt'
-       gem 'uploadcare-rails'
-       gem 'bootstrap_form'
-       gem 'has_friendship'
-    ```
-* Then ```bundle install``` on your terminal
-* Run ```rails s``` on your terminal to load up the server
-* Open up browser and go to ```localhost:3000```
+  `gem 'bcrypt'
+   gem 'uploadcare-rails'
+   gem 'bootstrap_form'
+   gem 'has_friendship'`
+* Then `bundle install` on your terminal
+* Run `rails s` on your terminal to load up the server
+* Open up browser and go to `localhost:3000`
 
 ## Technologies Used
 * **Ruby on Rails**
