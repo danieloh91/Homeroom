@@ -22,6 +22,8 @@
   <!-- student's page -->
   <% elsif current_user != nil && current_user.id == @user.id && current_user.role == false %>
     <%= @user.email %>
+    <br>
+    <br>
     <div class="row">
       <div class="well col-sm-12">
         <legend>
@@ -34,10 +36,10 @@
           <div class="col-sm-12">
             <h3>WDI</h3>
             <% @user.friends.each do |f| %>
-            <% if f.course == "WDI" && f.role==true %>
-              <%= link_to image_tag(f.image, width: "50px"), user_path(f) %><br>
-              <%= link_to f.first_name.titleize + " " + f.last_name.titleize, user_path(f) %>
-            <% end %>
+              <% if f.course == "WDI" && f.role==true %>
+                <%= link_to image_tag(f.image, width: "50px"), user_path(f) %><br>
+                <%= link_to f.first_name.titleize + " " + f.last_name.titleize, user_path(f) %><br><br>
+              <% end %>
             <% end %>
           </div>
         </div>
@@ -110,6 +112,8 @@
   <% end %>
 </div>
 
+<!-- user content section -->
+
 <div class="col-md-7 user-content-column">
   <!-- create post only if current user is instructor -->
   <% if current_user != nil && current_user.id == @user.id && current_user.role == true %>
@@ -146,12 +150,11 @@
           <ol class="tweets">
             <% @instructor_tweets.sort_by(&:id).reverse_each do |g| %>
               <li id="tweet-<%= g.id %>">
-                  <%= image_tag("#{g.user.image}", width: "80px", height: "80px", alt: "Profile Picture") %><br>
-                  <span class="content"><%= g.content %></span>
-                  <span class="timestamp">
-                    Posted <%= time_ago_in_words(g.created_at) %> ago.
-                  </span>
-
+                <%= image_tag("#{g.user.image}", width: "70px", height: "70px", alt: "Profile Picture") %><br>
+                <span class="content"><%= g.content %></span>
+                <span class="timestamp">
+                  Posted <%= time_ago_in_words(g.created_at) %> ago.
+                </span>
               </li>
             <% end %>
           </ol>

@@ -13,10 +13,14 @@
 
  @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
 
+ .well {
+   background: #b3c2bf;
+ }
+
  html, body{
    height: 100%;
    padding-top: 60px;
-   background: rgba(210, 213, 215, 1);
+   background: #c0dfd9;
  }
 
  #wrapper {
@@ -36,8 +40,13 @@
   bottom:0;
   left:0;
   text-align: center;
+  background: #3b3a36;
+  color: white;
  }
 
+ .navbar {
+   background: #e9ece5;
+ }
  .navbar-brand>img {
     margin-top: -7px !important;
     padding: 0px;
