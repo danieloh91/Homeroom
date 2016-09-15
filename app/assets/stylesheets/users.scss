@@ -8,11 +8,23 @@
   height: 330px;
 }
 
+.user-img {
+  padding-top: 19px;
+}
+
 .user-info-column {
   text-align: center;
 }
 .splashBtn {
   text-align: center;
+}
+
+.student-info {
+  span {
+    position: relative;
+    text-align: center;
+    padding: 0px;
+  }
 }
 
 legend, h2 {

@@ -32,12 +32,17 @@ class UsersController < ApplicationController
 
   def show
     find_user
-    @tweets = @user.tweets
-    @instructor_tweets = []
-    current_user.friends.each do |f|
-      f.tweets.each do |g|
-        @instructor_tweets.push(g)
+    if current_user
+      @tweets = @user.tweets
+      @instructor_tweets = []
+      current_user.friends.each do |f|
+        f.tweets.each do |g|
+          @instructor_tweets.push(g)
+        end
       end
+    else
+      flash[:notice] = "Please sign up to view profile"
+      redirect_to new_session_path
     end
 
   end
