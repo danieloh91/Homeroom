@@ -133,10 +133,10 @@
     <div class="row">
       <div class="well col-sm-10 col-sm-offset-1">
         <legend>Students</legend>
-        <div class="col-sm-12">
+        <div class="col-sm-12 student-info">
           <% @user.friends.each do |f| %>
-            <%= link_to image_tag(f.image, width: "50px"), user_path(f) %><br>
-            <%= link_to f.first_name.titleize + " " + f.last_name.titleize, user_path(f) %>
+            <span><%= link_to image_tag(f.image, width: "50px"), user_path(f) %><br>
+            <%= link_to f.first_name.titleize + " " + f.last_name.titleize, user_path(f) %><br></span>
           <% end %>
         </div>
       </div>
