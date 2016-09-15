@@ -16,7 +16,7 @@
  html, body{
    height: 100%;
    padding-top: 60px;
-   background: gray;
+   background: rgba(210, 213, 215, 1);
  }
 
  .navbar-brand>img {
@@ -28,7 +28,7 @@
 
  .navbar-nav>li {
    padding: 0.5vh;
- } 
+ }
 
  main {
    margin-top: -5.5%;

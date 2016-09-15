@@ -83,14 +83,14 @@
   <% end %>
 </div>
 
-<div class="col-md-7 user-content-column" style='background:white'>
+<div class="col-md-7 user-content-column">
   <!-- create post only if current user is instructor -->
   <% if current_user != nil && current_user.id == @user.id && current_user.role == true %>
     <h1>What do you want to say?</h1>
     <div class="row">
-      <aside class="col-md-4">
+      <aside class="well col-md-9">
         <section class="tweet_form">
-          <%= render './tweets/tweet_form', :tweet => @user.tweets.build  %>
+          <%= render './tweets/tweet_form', :tweet => @user.tweets.build %>
         </section>
       </aside>
     </div>
@@ -99,7 +99,7 @@
   <!-- instructor -->
   <% if current_user != nil && current_user.id == @user.id && current_user.role == true %>
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-8 user-feed">
         <h3>Announcements (<%= @user.tweets.count %>)</h3>
         <% if @user.tweets.count > 0 %>
           <ol class="tweets">
@@ -112,7 +112,7 @@
   <!-- student -->
   <% elsif current_user != nil && current_user.id == @user.id && current_user.role == false %>
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-8 user-feed">
         <h3>Feed</h3>
           <ol class="tweets">
             <% @instructor_tweets.sort_by(&:id).reverse_each do |g| %>
@@ -132,7 +132,7 @@
   <!-- instructor viewing student page -->
   <% elsif current_user != nil && current_user.id != @user.id && current_user.role == true && @user.role == false %>
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-8 user-feed">
         <h3>Instructors are unable to see student feeds</h3>
       </div>
     </div>
@@ -141,7 +141,7 @@
   <% elsif current_user != nil && current_user.id != @user.id && current_user.role == false && @user.role == true %>
     <% if current_user.friends_with?(@user) %>
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 user-feed">
           <h3>Feed</h3>
             <ol class="tweets">
               <% @user.tweets.sort_by(&:id).reverse_each do |g| %>
@@ -163,7 +163,7 @@
   <!-- student looking at student page -->
   <% elsif current_user != nil && current_user.id != @user.id && current_user.role == false && @user.role == false %>
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-8 user-feed">
         <h3>Unable to view feed</h3>
       </div>
     </div>
@@ -171,7 +171,7 @@
   <!-- instructor looking at instructor page -->
   <% elsif current_user != nil && current_user.id != @user.id && current_user.role == true && @user.role == true %>
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-8 user-feed">
         <h3>Instructors are unable to see announcements of other instructors</h3>
       </div>
     </div>
