@@ -4,10 +4,18 @@
 
 .tweets {
   list-style: none;
-  padding: 0;
+  padding-bottom: 80px;
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
+    display: block;
+    img {
+      position: absolute;
+    }
+    span {
+      position: relative;
+      padding-left: 12%;
+    }
   }
   .user {
     margin-top: 5em;
@@ -15,28 +23,12 @@
   }
   .content {
     display: block;
-    margin-left: 60px;
-    img {
-      display: block;
-      padding: 5px 0;
-    }
+    margin: 0 25px;
   }
   .timestamp {
-    color: rgba(180, 192, 213, 0.87);
+    color: rgba(245, 129, 149, 1);
     display: block;
-    margin-left: 60px;
-  }
-  .gravatar {
-    float: left;
-    margin-right: 10px;
-    margin-top: 5px;
-  }
-}
-
-aside {
-  textarea {
-    height: 100px;
-    margin-bottom: 5px;
+    margin: 0 25px;
   }
 }
 
@@ -44,5 +36,35 @@ span.picture {
   margin-top: 10px;
   input {
     border: 0;
+  }
+}
+
+textarea {
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+width: 100%;}
+
+.instructor-tweet {
+  h1 {
+    text-align: center;
+  }
+  .row {
+    text-align: center;
+    width: 75%;
+    margin: 0 auto;
+    padding-left: 15vh;
+    .well {
+      text-align: center;
+      .tweet-form {
+        text-align: center;
+      }
+    }
+  }
+}
+
+.user-feed {
+  h3{
+    text-align: center;
   }
 }

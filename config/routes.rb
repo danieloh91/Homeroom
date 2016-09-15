@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   patch "/users/:id", to: "users#update"
   delete "/users/:id", to: "users#destroy", as: "destroy_user"
   post "/users/:id", to: "users#add_instructor", as: "add_instructor"
-  post "/users/:id", to: "users#remove_student", as: "remove_student"
+  post "/users/:id/remove", to: "users#remove_student", as: "remove_student"
   get "/users/:id/follow", to: "users#follow", as: "follow_user"
   post "/users/:id/follow", to: "users#confirm_instructor", as: "confirm_instructor"
   delete "/users/:id/follow", to: "users#deny_instructor", as: "deny_instructor"
@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   post "/sessions", to: "sessions#create", as: "create_session"
 
   resources :tweets,          only: [:create, :destroy]
+
 end

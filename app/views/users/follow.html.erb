@@ -4,12 +4,12 @@
 
 <div class="row">
   <div class="well col-sm-6 col-sm-offset-3">
-    <legend>Follow Requests (<%= @user.requested_friends.count %>)</legend>
+    <legend>Follow Requests (<%= current_user.requested_friends.count %>)</legend>
     <div class="col-sm-4 about">
       <div class="col-sm-12">
         <% current_user.requested_friends.each do |f| %>
           <h3><%= f.first_name.titleize %></h3>
-          <%= button_to "Confirm", confirm_instructor_path, :class=>"ruby-link btn btn-info btn-default btn-md" %>
+          <%= button_to "Confirm", confirm_instructor_path(f), :class=>"ruby-link btn btn-info btn-default btn-md" %>
           <button class="ruby-link btn-danger btn-primary btn-sm inline">
             <%= link_to "Delete Request", deny_instructor_path, method: :delete, :class=>"ruby-link"%>
           </button>
