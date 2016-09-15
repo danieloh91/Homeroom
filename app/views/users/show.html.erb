@@ -55,9 +55,9 @@
   <% elsif current_user != nil && current_user.id != @user.id && current_user.role == false && @user.role == true %>
     <% if current_user.friends_with?(@user) == true %>
       <button type="button" name="button" class="followBtn" disabled="disabled">Following</button>
-    <% elsif @user.requested_friends[0] == current_user %>
+    <% elsif @user.requested_friends.include? current_user %>
       <button type="button" name="button" class="pendingBtn" disabled="disabled">Pending Request</button>
-    <% elsif @user.requested_friends[0] != current_user %>
+    <% else %>
       <%= button_to "Follow", add_instructor_path, {class: "ruby-link btn btn-info btn-default btn-md"} %>
     <% end %>
 

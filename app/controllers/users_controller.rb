@@ -74,6 +74,7 @@ class UsersController < ApplicationController
 
   def follow
     find_user
+    auth_fail("see other people's follow requests", @user) if !auth_route(@user)
     if current_user.role == false
       flash[:notice] = "As a student, you do not have follow requests"
       redirect_to current_user
@@ -90,9 +91,10 @@ class UsersController < ApplicationController
   end
 
   def confirm_instructor
-    current_user.accept_request(current_user.requested_friends[0])
+    find_user
+    current_user.accept_request(@user)
     if current_user.save
-      redirect_to confirm_instructor_path, notice: "You have added this student to your class"
+      redirect_to follow_user_path(current_user), notice: "You have added this student to your class"
     else
       redirect_to user_path, flash[:error] = "There was an error to adding this student"
     end
