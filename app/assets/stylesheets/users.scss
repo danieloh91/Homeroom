@@ -1,11 +1,16 @@
 .jumbotron {
-  background: no-repeat url("https://static.pexels.com/photos/68562/pexels-photo-68562.jpeg") center;
+  background: no-repeat url("http://i.huffpost.com/gen/2007430/images/o-EMPTY-CLASSROOM-facebook.jpg") center;
   background-size: cover;
   margin-top: -10px;
   margin-right: auto;
   margin-left: auto;
   color: rgba(255, 255, 250, 0.9);
-  height: 330px;
+  height: 480px;
+}
+
+.demo {
+  height: 400px;
+  width: 350px;
 }
 
 .user-img {
