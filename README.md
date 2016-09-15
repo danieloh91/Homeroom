@@ -38,6 +38,7 @@ HomeRoom is a web platform through which instructors can communicate to their st
 * Allow instructors to edit their tweets
 * Implement Angular.js to further modularize webpage
 * Add mobile friendly design
+* Add paginate gem to view posts more easily
 
 ## Links to Developer’s Github :octocat:
 * [Daniel Oh] (https://github.com/danieloh91)
