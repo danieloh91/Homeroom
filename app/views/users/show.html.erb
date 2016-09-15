@@ -23,18 +23,45 @@
   <% elsif current_user != nil && current_user.id == @user.id && current_user.role == false %>
     <%= @user.email %>
     <div class="row">
-      <div class="well col-sm-10 col-sm-offset-1">
+      <div class="well col-sm-12">
         <legend>
           Instructors
           <%= link_to instructors_path do %>
             <i class="glyphicon glyphicon-plus"></i>
           <% end %>
         </legend>
-        <div class="col-sm-12">
-          <% @user.friends.each do |f| %>
-            <%= link_to image_tag(f.image, width: "50px"), user_path(f) %><br>
-            <%= link_to f.first_name.titleize + " " + f.last_name.titleize, user_path(f) %>
-          <% end %>
+        <div class="col-sm-4 about">
+          <div class="col-sm-12">
+            <h3>WDI</h3>
+            <% @user.friends.each do |f| %>
+            <% if f.course == "WDI" && f.role==true %>
+              <%= link_to image_tag(f.image, width: "50px"), user_path(f) %><br>
+              <%= link_to f.first_name.titleize + " " + f.last_name.titleize, user_path(f) %>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-sm-4 about">
+          <div class="col-sm-12">
+            <h3>UXDI</h3>
+            <% @user.friends.each do |f| %>
+            <% if f.course == "UXDI" && f.role==true %>
+              <%= link_to image_tag(f.image, width: "50px"), user_path(f) %><br>
+              <%= link_to f.first_name.titleize + " " + f.last_name.titleize, user_path(f) %>
+            <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-sm-4 about">
+          <div class="col-sm-12">
+            <h3>DSI</h3>
+            <% @user.friends.each do |f| %>
+            <% if f.course == "DSI" && f.role==true %>
+              <%= link_to image_tag(f.image, width: "50px"), user_path(f) %><br>
+              <%= link_to f.first_name.titleize + " " + f.last_name.titleize, user_path(f) %>
+            <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
@@ -50,7 +77,7 @@
         <div class="col-sm-12">
           <% @user.friends.each do |f| %>
             <%= link_to image_tag(f.image, width: "50px"), user_path(f) %><br>
-            <%= link_to f.first_name.titleize + " " + f.last_name.titleize + " ( )", user_path(f) %>
+            <%= link_to f.first_name.titleize + " " + f.last_name.titleize, user_path(f) %>
           <% end %>
         </div>
       </div>
@@ -120,8 +147,6 @@
             <% @instructor_tweets.sort_by(&:id).reverse_each do |g| %>
               <li id="tweet-<%= g.id %>">
                   <%= image_tag("#{g.user.image}", width: "80px", height: "80px", alt: "Profile Picture") %><br>
-                  <%= link_to g.user.first_name.titleize + " " + g.user.last_name.titleize + " (" + g.user.course + ")", g.user %>
-
                   <span class="content"><%= g.content %></span>
                   <span class="timestamp">
                     Posted <%= time_ago_in_words(g.created_at) %> ago.
