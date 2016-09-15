@@ -86,20 +86,22 @@
 <div class="col-md-7 user-content-column">
   <!-- create post only if current user is instructor -->
   <% if current_user != nil && current_user.id == @user.id && current_user.role == true %>
-    <h1>What do you want to say?</h1>
-    <div class="row">
-      <aside class="well col-md-9">
-        <section class="tweet_form">
-          <%= render './tweets/tweet_form', :tweet => @user.tweets.build %>
-        </section>
-      </aside>
+    <div class="row instructor-tweet">
+      <h1>Remind students to:</h1>
+      <div class="row">
+        <aside class="well col-md-9">
+          <section class="tweet_form">
+            <%= render './tweets/tweet_form', :tweet => @user.tweets.build %>
+          </section>
+        </aside>
+      </div>
     </div>
   <% end %>
 
   <!-- instructor -->
   <% if current_user != nil && current_user.id == @user.id && current_user.role == true %>
     <div class="row">
-      <div class="col-md-8 user-feed">
+      <div class="col-md-8 col-md-offset-2 user-feed">
         <h3>Announcements (<%= @user.tweets.count %>)</h3>
         <% if @user.tweets.count > 0 %>
           <ol class="tweets">
@@ -112,17 +114,19 @@
   <!-- student -->
   <% elsif current_user != nil && current_user.id == @user.id && current_user.role == false %>
     <div class="row">
-      <div class="col-md-8 user-feed">
+      <div class="col-md-10 user-feed">
         <h3>Feed</h3>
           <ol class="tweets">
             <% @instructor_tweets.sort_by(&:id).reverse_each do |g| %>
               <li id="tweet-<%= g.id %>">
-                <%= image_tag("#{g.user.image}", width: "80px", height: "80px", alt: "Profile Picture") %>
-                <span class="user"><%= link_to g.user.first_name.titleize, g.user %></span>
-                <span class="content"><%= g.content %></span>
-                <span class="timestamp">
-                  Posted <%= time_ago_in_words(g.created_at) %> ago.
-                </span>
+                  <%= image_tag("#{g.user.image}", width: "80px", height: "80px", alt: "Profile Picture") %><br>
+                  <%= link_to g.user.first_name.titleize, g.user %>
+
+                  <span class="content"><%= g.content %></span>
+                  <span class="timestamp">
+                    Posted <%= time_ago_in_words(g.created_at) %> ago.
+                  </span>
+
               </li>
             <% end %>
           </ol>

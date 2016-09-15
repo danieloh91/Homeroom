@@ -1,6 +1,7 @@
 <%= form_for(tweet) do |f| %>
   <div class="field">
-    <%= f.text_area :content, size: "79x10", placeholder: "Make an announcement...", maxlength: 140 %>
+    <%= f.text_area :content, size: "79x4", placeholder: "Make an announcement...", maxlength: 140 %>
   </div>
+  <br>
   <%= button_to "Post", tweets_path, {class: "ruby-link btn btn-info btn-default btn-md"} %>
 <% end %>
